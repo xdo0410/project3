@@ -49,5 +49,4 @@ int main() {
 	delete(bst1);
 	delete(bst2);
 	return 0;
-};
-
+}
