@@ -27,7 +27,7 @@ class SearchTree {					// a binary search tree
 public: 						// public types
 	typedef typename E::Key K;				// a key
 	typedef typename E::Value V;			// a value
-	class Iterator;					// an iterator/position
+	//class Iterator;					// an iterator/position
 public:						// public functions
 	SearchTree();					// constructor
 	int size() const; 					// number of entries
@@ -41,43 +41,21 @@ public:						// public functions
 	//Iterator end();					// iterator to end entry
 	void printInorder() const;
 protected:						// local utilities
-	LinkedBinaryTree<E> BinaryTree;			// linked binary tree
+	//BinaryTree<E> BinaryTree;			// linked binary tree
 	//typedef typename BinaryTree::Position TPos;		// position in the tree
 	Position<E> root() const;					// get virtual root
 	Position<E> finder(const K& k, Position<E>& v);		// find utility
 	Position<E> inserter(const K& k, const V& x);		// insert utility
 	void inorder(Position<E>& v) const; // inorder print utility
-	Position<E> eraser(Position<E>& v);				// erase utility
+	Position<E> eraser(Position<E>& v);	// erase utility
+	SLinkedList<Entry<string, string>>* pfinder(const K& k, Position<E>& v, SLinkedList<Entry<string, string>> *_list);	
 	//Position restructure(const TPos& v);	// restructure
 private: 						// member data
 	LinkedBinaryTree<E> T;					// the binary tree
 	int n;						// number of entries
 public:
-	class Iterator {	//Iterator Definition
-	private:
-		TPos v;			//entry
-	public:
-		friend class SearchTree<E>;					//give SearchTree access
-		Iterator(const TPos& vv) : v(vv) {}			//constructor
-		const E& operator*() const { return *v; }	//get entry(read only)
-		E& operator*() { return *v; }				//get entry(read/write)
-		bool operator==(const Iterator& p) const {	//are iterators equal?
-			return v = p.v; }
-		Iterator& operator++() {					//inorder successor
-			TPos w = v.right();
-			if ((w == w.isExternal()) || (w == w.isRoot())) {
-				w = v.parent();
-				while (v == w.right()) { v = w; w = w.parent(); }
-				v = w;													//add left subtree
-			}
-			else {														//right subtree
-				do { v = w; w = w.left(); } while ((w != w.isExternal()) || (w != w.isRoot()));
-			}
 
-			return *this;
-		}
-	};
-}; 
+};
 
 
 
