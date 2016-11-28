@@ -27,7 +27,7 @@ class SearchTree {					// a binary search tree
 public: 						// public types
 	typedef typename E::Key K;				// a key
 	typedef typename E::Value V;			// a value
-	// class Iterator;					// an iterator/position
+	class Iterator;					// an iterator/position
 public:						// public functions
 	SearchTree();					// constructor
 	int size() const; 					// number of entries
@@ -41,14 +41,14 @@ public:						// public functions
 	//Iterator end();					// iterator to end entry
 	void printInorder() const;
 protected:						// local utilities
-	// BinaryTree<E> BinaryTree;			// linked binary tree
-	//typedef typename BinaryTree::Position TPos;		// position in the tree
+	BinaryTree<E> BinaryTree;			// linked binary tree
+	typedef typename BinaryTree::Position TPos;		// position in the tree
 	Position<E> root() const;					// get virtual root
 	Position<E> finder(const K& k, Position<E>& v);		// find utility
 	Position<E> inserter(const K& k, const V& x);		// insert utility
 	void inorder(Position<E>& v) const; // inorder print utility
 	Position<E> eraser(Position<E>& v);				// erase utility
-	// Position restructure(const TPos& v);	// restructure
+	Position restructure(const TPos& v);	// restructure
 private: 						// member data
 	LinkedBinaryTree<E> T;					// the binary tree
 	int n;						// number of entries
@@ -78,7 +78,7 @@ public:
 		}
 	};
 }; 
-};
+
 
 
 template <typename E>					// constructor
