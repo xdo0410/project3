@@ -53,7 +53,31 @@ private: 						// member data
 	LinkedBinaryTree<E> T;					// the binary tree
 	int n;						// number of entries
 public:
-	// ...insert Iterator class declaration here
+	class Iterator {	//Iterator Definition
+	private:
+		TPos v;			//entry
+	public:
+		friend class SearchTree<E>;					//give SearchTree access
+		Iterator(const TPos& vv) : v(vv) {}			//constructor
+		const E& operator*() const { return *v; }	//get entry(read only)
+		E& operator*() { return *v; }				//get entry(read/write)
+		bool operator==(const Iterator& p) const {	//are iterators equal?
+			return v = p.v; }
+		Iterator& operator++() {					//inorder successor
+			TPos w = v.right();
+			if ((w == w.isExternal()) || (w == w.isRoot())) {
+				w = v.parent();
+				while (v == w.right()) { v = w; w = w.parent(); }
+				v = w;													//add left subtree
+			}
+			else {														//right subtree
+				do { v = w; w = w.left(); } while ((w != w.isExternal()) || (w != w.isRoot()));
+			}
+
+			return *this;
+		}
+	};
+}; 
 };
 
 
@@ -119,10 +143,7 @@ template <typename E>					// find entry with key k
 SLinkedList<E>* SearchTree<E>::findPath(const K& k) {
 	// TO DO: you need to implement a function to return the entries of search path
 	//         OK to create another member function to be called here if needed
-    SLinkedList<Entry<string, string>> *sll = new SLinkedList<Entry<string, string>>;
-    Position<E> p = root();
-    pfinder(k, p, sll);
-  return sll;
+   return nullptr;
 }
 
 
