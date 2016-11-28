@@ -25,17 +25,17 @@ SearchTree<Entry<string, string> >* buildBST_fromDatafile(const std::string& fil
 	// TO DO: implement the creation of a binary search tree
 	while (f) {
 		getline(f,s);
-        int mark = 0;
+        int name = 0;
         for (int i = 0; i < s.length(); i++) {
             if (s[i] == ',') {
-                mark = i;
+                name = i;
             }
         }
         string key, value;
-        for (int i = 0; i < mark; i++) {
+        for (int i = 0; i < name; i++) {
             firstName += s[i];
         }
-        for (int i = mark+1; i < s.length()-1; i++) {
+        for (int i = name+1; i < s.length()-1; i++) {
             movie += s[i];
         }
         
@@ -56,12 +56,12 @@ void printInReverseOder(SNode<Entry<string,string> >* node)
         return;
     }
     printInReverseOder(node->getnext());
-    string nam,mov;
+    string First,Movie;
     Entry<string, string> current;
     current = node->getElem();
-    nam = current.key();
-    mov = current.value();
-    cout << nam << "," << mov << endl;
+    First = current.key();
+    Movie = current.value();
+    cout << First << "," << Movie << endl;
 }
 
 
