@@ -30,7 +30,7 @@ int main() {
 	cout << "Steven: " << sll1->size() << " steps" << endl;
 	sll2 = bst2->findPath("Steven");
 	cout << "Steven: " << sll2->size() << " steps" << endl;
-	printInReverseOrder(sll2->gethead());
+	printInReverseOder(sll2->gethead());
 
 	delete(sll1); 	sll1 = NULL;
 	delete(sll2);   sll2 = NULL;
@@ -43,7 +43,7 @@ int main() {
 	cout << myownFirstName << ": " << sll1->size() << " steps" << endl;
 	sll2 = bst2->findPath(myownFirstName);
 	cout << myownFirstName << ": " << sll2->size() << " steps" << endl;
-	printInReverseOrder(sll2->gethead());
+	printInReverseOder(sll2->gethead());
 	delete(sll1);
 	delete(sll2);
 	delete(bst1);
