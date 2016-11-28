@@ -24,12 +24,26 @@ SearchTree<Entry<string, string> >* buildBST_fromDatafile(const std::string& fil
 
 	// TO DO: implement the creation of a binary search tree
 	while (f) {
-	f >> firstName;
-		cout << firstName << " ";		//DELETE
-		getline(f, movie);
-		cout << movie << endl;			//DELETE
-		if ((firstName + movie)!= magic) { bst->insert(firstName, movie); }
-
+		getline(f,s);
+        int mark = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s[i] == ',') {
+                mark = i;
+            }
+        }
+        string key, value;
+        for (int i = 0; i < mark; i++) {
+            firstName += s[i];
+        }
+        for (int i = mark+1; i < s.length()-1; i++) {
+            movie += s[i];
+        }
+        
+        bst->insert(firstName, movie);
+        firstName.clear();
+        movie.clear();
+        
+    }
 	f.close();
 
 	return bst;
@@ -38,10 +52,16 @@ SearchTree<Entry<string, string> >* buildBST_fromDatafile(const std::string& fil
 // TO DO: You need to implement a function to print a singly linked list in reverse order
 void printInReverseOder(SNode<Entry<string,string> >* node)
 {
-	if (node->getnext() == NULL) return;
-	help_print(node->getElem());
-	printInReverseOrder(node->getnext());
-
+	if (node == NULL) {
+        return;
+    }
+    printInReverseOrder(node->getnext());
+    string nam,mov;
+    Entry<string, string> current;
+    current = node->getElem();
+    nam = current.key();
+    mov = current.value();
+    cout << nam << "," << mov << endl;
 }
 
 
