@@ -55,7 +55,7 @@ void printInReverseOder(SNode<Entry<string,string> >* node)
 	if (node == NULL) {
         return;
     }
-    printInReverseOrder(node->getnext());
+    printInReverseOder(node->getnext());
     string nam,mov;
     Entry<string, string> current;
     current = node->getElem();
