@@ -138,12 +138,44 @@ Position<E> SearchTree<E>::find(const K& k) {
 	return finder(k, r);				// search from root
 }
 
+template <typename E>					// find utility
+SLinkedList<Entry<string, string>>* SearchTree<E>::pfinder(const K& k, Position<E>& p, SLinkedList<Entry<string, string>> *_list) {
+    Position<E> l = p.left(), r = p.right();
+    Entry<string, string> new_entry;
+    if (p.isExternal()) {
+        new_entry = (*p);
+        _list->addFront(new_entry);
+        return _list;
+    }
+    if (k < (*p).key()) {
+        new_entry = (*p);
+        _list->addFront(new_entry);
+        p = l;
+        pfinder(k, p, _list);
+    }
+    else if (k > (*p).key()) {
+        new_entry = (*p);
+        _list->addFront(new_entry);
+        p = r;
+        pfinder(k, p, _list);
+    }
+    else {
+        new_entry = (*p);
+        _list->addFront(new_entry);
+        return _list;
+    }
+    return _list;
+}
+
 // TO DO: implement the finderPath function
 template <typename E>					// find entry with key k
 SLinkedList<E>* SearchTree<E>::findPath(const K& k) {
 	// TO DO: you need to implement a function to return the entries of search path
 	//         OK to create another member function to be called here if needed
-   return nullptr;
+    SLinkedList<Entry<string, string>> *sll = new SLinkedList<Entry<string, string>>;
+    Position<E> p = root();
+    pfinder(k, p, sll);
+    return sll;
 }
 
 
